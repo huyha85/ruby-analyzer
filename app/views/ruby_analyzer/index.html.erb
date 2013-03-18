@@ -1,0 +1,19 @@
+<h1>Code Duplications</h1>
+
+<div id='code-duplications'>
+  <%= render partial: 'duplication', collection: @duplications %>
+</div>
+<div id='code-preview'>
+</div>
+
+<script>
+  $(function() {
+    $('.duplication-title').click(function() {
+      $this = $(this);
+      $.ajax({
+        url: '/ruby_analyzer/preview',
+        data: $this.next('.duplication-files').find('form').serialize()
+      })
+    })
+  });
+</script>

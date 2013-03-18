@@ -17,11 +17,12 @@ Jeweler::Tasks.new do |gem|
   gem.name = "ruby-analyzer"
   gem.homepage = "http://github.com/huyha85/ruby-analyzer"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{A box of multiple tools to help you analyze and refactor your code.}
+  gem.description = %Q{A box of multiple tools to help you analyze and refactor your code. You can analyze for code duplication, or find out methods with top code complexity.}
   gem.email = "hhuy424@gmail.com"
   gem.authors = ["Huy Ha"]
   # dependencies defined in Gemfile
+  gem.files = FileList['app/**/*.*', 'config/**/*.rb', 'lib/**/*.rb']
 end
 Jeweler::RubygemsDotOrgTasks.new
 
