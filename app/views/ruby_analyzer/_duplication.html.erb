@@ -5,12 +5,4 @@
       <li><%= "#{file[:file]}.#{file[:line]}" %></li>
     <% end %>
   </ul>
-  <div class='hidden'>
-    <%= form_tag do %>
-      <% duplication[:files].each do |file| %>
-        <%= hidden_field_tag 'files[][file]', file[:file] %>
-        <%= hidden_field_tag 'files[][line]', file[:line] %>
-      <% end %>
-    <% end %>
-  </div>
 </div>

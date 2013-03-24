@@ -1,19 +1,51 @@
-<h1>Code Duplications</h1>
+<h1>Code Analyzer</h1>
 
-<div id='code-duplications'>
-  <%= render partial: 'duplication', collection: @duplications %>
-</div>
-<div id='code-preview'>
+<div id='ruby-analyzer-container'>
+  <ul>
+    <li><a href="#duplications-container">Duplication Code</a></li>
+    <li><a href="#complexity-container">Complexity Methods</a></li>
+    <li><a href="#unused-container">Unused Methods</a></li>
+  </ul>
+  <div id='duplications-container'>
+    <div><%= link_to 'Analyze', '#', id: 'analyze-duplications-link' %></div>
+    <div id='code-duplications'></div>  
+  </div>
+  <div id='complexity-container'>
+    <div><%= link_to 'Analyze', '#', id: 'analyze-complexity-link' %></div>
+    <div id='code-complexity'></div>
+  </div>
+  <div id='unused-container'>
+    <div><%= link_to 'Analyze', '#', id: 'analyze-unused-link' %></div>
+    <div id='code-unused'></div>
+  </div>
 </div>
 
 <script>
   $(function() {
-    $('.duplication-title').click(function() {
-      $this = $(this);
-      $.ajax({
-        url: '/ruby_analyzer/preview',
-        data: $this.next('.duplication-files').find('form').serialize()
-      })
+    $("#ruby-analyzer-container").tabs();
+    
+    $('#analyze-duplications-link').bind('click', function() {
+      remoteAnalyzeCall('/ruby_analyzer/duplications');
+      return false;
+    })
+
+    $('#analyze-complexity-link').bind('click', function() {
+      remoteAnalyzeCall('/ruby_analyzer/complexity');
+      return false;
+    })
+
+    $('#analyze-unused-link').bind('click', function() {
+      remoteAnalyzeCall('/ruby_analyzer/unused');
+      return false;
     })
   });
+
+  function remoteAnalyzeCall(end_point) {
+    $.ajax({
+      url: end_point,
+      error: function() {
+        alert("Something went wrong. Please check your log for more detail.");
+      }
+    })
+  }
 </script>
